@@ -20,15 +20,12 @@
 #?(:clj
    (extend-protocol AsyncContext
      Object
-     (async? [_] false)
-     (continue [t f] (f t))
-     (await [t] t)))
+     (async? [_] false)))
 
 #?(:cljs
    (extend-protocol AsyncContext
      default
-     (async? [_] false)
-     (continue [t f] (f t))))
+     (async? [_] false)))
 
 #?(:clj
    (extend-protocol AsyncContext
