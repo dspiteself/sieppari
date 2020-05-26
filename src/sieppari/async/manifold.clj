@@ -15,4 +15,18 @@
   (continue [d ctx f]
     (-> (d/chain'- nil d f)
         (d/catch' (fn [e] (f (assoc ctx :error e))))))
+  (await [d] (deref d))
+
+  manifold.deferred.SuccessDeferred
+  (async? [_] true)
+  (continue [d ctx f]
+    (-> (d/chain'- nil d f)
+        (d/catch' (fn [e] (f (assoc ctx :error e))))))
+  (await [d] (deref d))
+
+  manifold.deferred.LeakAwareDeferred
+  (async? [_] true)
+  (continue [d ctx f]
+    (-> (d/chain'- nil d f)
+        (d/catch' (fn [e] (f (assoc ctx :error e))))))
   (await [d] (deref d)))
